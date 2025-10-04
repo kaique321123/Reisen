@@ -39,6 +39,10 @@ gem "bootsnap", require: false
 group :production do
   gem "pg"
 end
+group :test do
+  gem 'rails-controller-testing'
+end
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
