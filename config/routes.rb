@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get 'documento/show'
   get 'perfil/show'
+  get 'news', to: 'news#index'
+  get 'news/:id', to: 'news#show', as: 'news_item'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
