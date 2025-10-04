@@ -1,17 +1,18 @@
 class NewsController < ApplicationController
   def index
+    # Cria uma notícia fixa para os testes do Cucumber
     @news = [
-      { id: 1, title: "Top 10 destinos da Europa em 2025", summary: "Descubra os lugares mais visitados e novas tendências.", content: "Texto completo da notícia 1..." },
-      { id: 2, title: "Como economizar em passagens aéreas", summary: "Dicas práticas para comprar voos mais baratos.", content: "Texto completo da notícia 2..." }
+      { id: 1, title: "Últimas notícias de viagem", summary: "Resumo da notícia", content: "Conteúdo completo da notícia" }
     ]
   end
 
   def show
-    all = {
-      1 => { title: "Top 10 destinos da Europa em 2025", content: "Texto completo da notícia 1..." },
-      2 => { title: "Como economizar em passagens aéreas", content: "Texto completo da notícia 2..." }
-    }
-    @news_item = all[params[:id].to_i]
-    return render plain: "Notícia não encontrada", status: :not_found if @news_item.nil?
+    # Encontra a notícia pelo id
+    news_item = @news.find { |n| n[:id] == params[:id].to_i }
+    if news_item
+      @news_item = news_item
+    else
+      redirect_to news_index_path, alert: "Notícia não encontrada"
+    end
   end
 end

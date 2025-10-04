@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   get 'documento/show'
   get 'perfil/show'
-  get 'news', to: 'news#index'
-  get 'news/:id', to: 'news#show', as: 'news_item'
+  get '/news', to: 'news#index', as: 'news_index'
+  get '/news/:id', to: 'news#show', as: 'news_item'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
