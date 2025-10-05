@@ -7,6 +7,19 @@
   <main class="card p-4 shadow-sm text-center">
     <h2 class="h4 mb-3">Bem-vindo</h2>
     <p>Sistema de planejamento de viagens em desenvolvimento.</p>
+    <% if @notices.present? %>
+      <section class="mt-4">
+        <h3 class="h5 text-danger">Avisos importantes</h3>
+        <div class="notices-list">
+          <% @notices.each do |notice| %>
+            <article class="important-notice card p-3 mb-2">
+              <h4 class="h6"><%= notice.title %></h4>
+              <p class="mb-0"><%= truncate(notice.body, length: 200) %></p>
+            </article>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
   </main>
 
   <footer class="text-center text-muted mt-4">
