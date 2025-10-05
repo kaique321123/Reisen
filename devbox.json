@@ -7,7 +7,11 @@
     "libyaml": {
       "version": "latest",
       "outputs": ["out", "dev"]
-    }
+    },
+    "gcc": "latest",
+    "gmp": "latest",
+    "gnumake": "latest",
+    "zlib": "latest"
   },
   "shell": {
     "init_hook": [
