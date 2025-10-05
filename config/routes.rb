@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
   #get 'profiles/edit'
   #get 'profiles/update'
   get 'documento/show'
@@ -11,7 +13,23 @@ Rails.application.routes.draw do
   # Páginas principais
   root "home#index"
 
-  resources :perfil
-  resources :documento
   resource :profile, only: [:edit, :update]
+
+  get 'login',      to: 'login#new'
+  post 'login',     to: 'login#create'
+  delete 'logout',  to: 'login#destroy'
+
+  if Rails.env.test?
+    get '/mock/latam', to: 'mocks#latam'
+    get '/mock/gol', to: 'mocks#gol'
+    get '/mock/azul', to: 'mocks#azul'
+    get '/mock/erro', to: 'mocks#erro'
+  end
+
+  resources :perfis do
+    resources :documentos
+    resources :checklists
+  end
+
+  resources :usuario
 end
