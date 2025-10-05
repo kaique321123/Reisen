@@ -1,0 +1,36 @@
+<h1>Editar Perfil</h1>
+
+<%= form_with model: @user, url: profile_path, local: true do |f| %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <% @user.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :username, "Nome de usuário" %>
+    <%= f.text_field :username %>
+  </div>
+
+  <div>
+    <%= f.label :display_name, "Nome para exibição" %>
+    <%= f.text_field :display_name %>
+  </div>
+
+  <div>
+    <%= f.label :email, "E-mail" %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.submit "Salvar" %>
+  </div>
+<% end %>
+
+<% if notice %>
+  <div class="alert alert-success">
+    <%= notice %>
+  </div>
+<% end %>

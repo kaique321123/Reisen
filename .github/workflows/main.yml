@@ -22,7 +22,8 @@ jobs:
       - name: Set up Database
         run: |
           bundle exec rails db:create
-          bundle exec rails db:migrate 
+          bundle exec rails db:schema:load
+          bundle exec rails db:migrate
       - name: Run tests with coverage
         run: bundle exec rake
       # - name: Send coverage to CodeClimate

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #get 'profiles/edit'
+  #get 'profiles/update'
   get 'documento/show'
   get 'perfil/show'
 
@@ -11,4 +13,5 @@ Rails.application.routes.draw do
 
   resources :perfil
   resources :documento
+  resource :profile, only: [:edit, :update]
 end
