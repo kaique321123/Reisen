@@ -19,20 +19,15 @@ Rails.application.routes.draw do
     get '/mock/erro',  to: 'mocks#erro'
   end
 
-  # Perfis e sub-recursos
+  # Recursos principais
   resources :perfis do
-    member do
-      patch :update_foto
-      get :customizar
-    end
-
     resources :documentos
     resources :checklists
   end
 
-  # Usuários
-  resources :usuarios
+  # Rota que os testes de perfil precisam
+  get 'perfis/:id/edit', to: 'perfis#edit', as: 'edit_profile'
 
-  # Feedbacks
+  resources :usuarios
   resources :feedbacks, only: [:new, :create, :index, :show]
 end
