@@ -1,35 +1,41 @@
-# .github/workflows/main.yml
 name: "Ruby on Rails CI"
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
 jobs:
   test:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
+      # Você pode manter ou remover a variável do Coveralls se não for usar
       COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3.3' # Verifique se esta é a sua versão do Ruby
+          ruby-version: '3.3.3'
           bundler-cache: true
+
       - name: Set up Database
         run: |
           bundle exec rails db:create
           bundle exec rails db:schema:load
           bundle exec rails db:migrate
+
       - name: Run tests with coverage
         run: bundle exec rake
-      # - name: Send coverage to CodeClimate
-      #   uses: paambaati/codeclimate-action@v6.0.0
-      #   env:
-      #     CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      #   with:
-      #     coverageLocations: |
-      #       ${{github.workspace}}/coverage/lcov.info:lcov
+
+      
+      - name: Upload coverage to qlty
+        uses: qltysh/qlty-action/coverage@v2
+        with:
+          token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+          files: coverage/.resultset.json
