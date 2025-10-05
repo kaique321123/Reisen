@@ -25,11 +25,15 @@ jobs:
 
       - name: Install Google Chrome Stable
         run: |
-          sudo apt-get update
-          sudo apt-get install google-chrome-stable # Instala uma versão estável
+          sudo apt-get update -qq
+          sudo apt-get install -y google-chrome-stable
+          sudo apt-get install -y chromium-chromedriver
 
-      - name: Add ChromeDriver to PATH
-        run: echo "${{ steps.setup_chrome.outputs.chromedriver-path }}" >> $GITHUB_PATH
+      - name: Set Chrome Environment Variables
+        run: |
+          echo "CHROME_BIN=/usr/bin/google-chrome" >> $GITHUB_ENV 
+          echo "CHROMEDRIVER_PATH=/usr/bin/chromedriver" >> $GITHUB_ENV
+          echo "/usr/bin" >> $GITHUB_PATH
 
       - name: Set up Database
         run: |
