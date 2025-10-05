@@ -28,6 +28,12 @@ jobs:
         with:
           chrome-version: latest
 
+      - name: Add ChromeDriver to PATH
+        run: echo "${{ steps.setup_chrome.outputs.chromedriver-path }}" >> $GITHUB_PATH
+
+      - name: Update Chromedriver
+        run: bundle exec rails r 'Webdrivers::Chromedriver.update'
+
       - name: Set up Database
         run: |
           bundle exec rails db:create
