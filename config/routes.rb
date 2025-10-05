@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   # Páginas principais
   root "home#index"
 
+  # Recursos existentes
   resources :perfil
   resources :documento
+
+  # 🔹 Nova funcionalidade: feedbacks
+  resources :feedbacks, only: [:index]
 end

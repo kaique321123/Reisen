@@ -1,0 +1,17 @@
+Feature: Apresentar feedbacks como viajante
+  Como viajante
+  Quero acessar avaliações e histórias de outros usuários
+  Para tomar decisões mais informadas sobre minhas viagens
+
+  Background:
+    Dado os seguintes feedbacks existem:
+      | author      | rating | comment                        |
+      | Maria Silva | 5      | O hotel era excelente!          |
+      | João Souza  | 4      | Passeio agradável, recomendo.   |
+
+  Cenario: Visualizar lista de feedbacks
+    Quandoo eu visito a página de feedbacks
+    Entao eu devo ver "O hotel era excelente!"
+    e eu devo ver "Passeio agradável, recomendo."
+    e eu devo ver "Maria Silva"
+    e eu devo ver "João Souza"
