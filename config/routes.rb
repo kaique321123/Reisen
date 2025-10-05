@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+<<<<<<< HEAD
+=======
+  #get 'profiles/edit'
+  #get 'profiles/update'
+>>>>>>> origin/main
   get 'documento/show'
   get 'perfil/show'
 
@@ -11,7 +16,10 @@ Rails.application.routes.draw do
   # Páginas principais
   root "home#index"
 
+<<<<<<< HEAD
   # Rotas do main
+=======
+>>>>>>> origin/main
   resource :profile, only: [:edit, :update]
 
   get 'login',      to: 'login#new'
@@ -31,9 +39,13 @@ Rails.application.routes.draw do
   end
 
   resources :usuario
+<<<<<<< HEAD
 
   # 🔹 Rotas da feature Feedback
   resources :perfil
   resources :documento
   resources :feedbacks, only: [:new, :create, :index, :show]
 end
+=======
+end
+>>>>>>> origin/main

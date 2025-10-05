@@ -2,11 +2,17 @@ require 'ostruct'
 
 FactoryBot.define do
   factory :participante, class: OpenStruct do
-    name {"John Doe"}
-    email {"johndoe@example.com"}
-    short_id {"#123ABC"}
-  end
-  factory :documento, class: OpenStruct do
-    title {"Paris - França"}
+    transient do
+      perfil { build(:perfil) }
+      documento { build(:documento, perfil: perfil) }
+    end
+
+    initialize_with do
+      OpenStruct.new(
+        usuario: perfil.usuario,
+        perfil: perfil,
+        documento: documento
+      )
+    end
   end
 end
