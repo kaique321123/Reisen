@@ -56,7 +56,7 @@ group :development, :test do
   gem "database_cleaner-active_record"
   gem "simplecov", require: false
   gem "coveralls", require: false
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", "~> 4.8"
   gem "webdrivers"
 end
 
