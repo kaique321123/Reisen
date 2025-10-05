@@ -1,0 +1,20 @@
+# language: pt
+Funcionalidade: Gerenciar Feedbacks
+  Como usuário
+  Quero criar e visualizar feedbacks
+  Para enviar minhas sugestões e opiniões
+
+  Cenário: Criar feedback com sucesso
+    Dado que estou logado como "usuario_teste"
+    Quando eu acesso a página de novo feedback
+    E preencho o título com "Sugestão de melhoria"
+    E preencho o conteúdo com "Adicionar mais opções de filtros"
+    E envio o feedback
+    Então devo ver a mensagem "Feedback criado com sucesso."
+    E devo ver o título "Sugestão de melhoria" listado na página de feedbacks
+
+  Cenário: Tentar criar feedback sem preencher campos
+    Dado que estou logado como "usuario_teste"
+    Quando eu acesso a página de novo feedback
+    E envio o feedback sem preencher os campos
+    Então devo ver mensagens de erro indicando que o título e o conteúdo não podem ficar em branco

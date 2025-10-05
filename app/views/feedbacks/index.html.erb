@@ -1,0 +1,11 @@
+<h1>Feedbacks</h1>
+
+<%= link_to "Novo Feedback", new_feedback_path, class: "btn btn-primary" %>
+
+<ul>
+  <% @feedbacks.each do |f| %>
+    <li>
+      <%= link_to f.titulo, feedback_path(f) %> - <%= f.usuario.nome %>
+    </li>
+  <% end %>
+</ul>

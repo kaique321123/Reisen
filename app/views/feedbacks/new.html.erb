@@ -1,0 +1,27 @@
+<h1>Novo Feedback</h1>
+
+<%= form_with model: @feedback, local: true do |f| %>
+  <% if @feedback.errors.any? %>
+    <div class="errors">
+      <ul>
+        <% @feedback.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :titulo %>
+    <%= f.text_field :titulo %>
+  </div>
+
+  <div>
+    <%= f.label :conteudo %>
+    <%= f.text_area :conteudo %>
+  </div>
+
+  <%= f.submit "Enviar", class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "Voltar", feedbacks_path %>
