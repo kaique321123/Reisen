@@ -1,6 +1,5 @@
 require 'capybara'
 require 'selenium-webdriver'
-require 'tmpdir'
 
 Capybara.register_driver :headless_chrome do |app|
   # auto-detect Chrome/Chromium binary in common locations (prefer snap), or use ENV override
@@ -19,11 +18,12 @@ Capybara.register_driver :headless_chrome do |app|
   ].find { |p| File.exist?(p) }
 
   options = Selenium::WebDriver::Chrome::Options.new.tap do |opts|
-    # create a unique user-data-dir per driver instance to avoid "user data directory is already in use"
-    tmp_profile = Dir.mktmpdir('capybara-chrome')
-    opts.add_argument("--user-data-dir=#{tmp_profile}")
-
     opts.add_argument('--headless=new')
+  # avoid using a custom user-data-dir here (snap builds and concurrent runs can conflict)
+  # add common flags to reduce interactive prompts and extensions
+  opts.add_argument('--no-first-run')
+  opts.add_argument('--no-default-browser-check')
+  opts.add_argument('--disable-extensions')
     opts.add_argument('--disable-gpu')
     opts.add_argument('--no-sandbox')
     opts.add_argument('--disable-dev-shm-usage')
