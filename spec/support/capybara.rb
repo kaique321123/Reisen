@@ -17,7 +17,11 @@ Capybara.register_driver :headless_chrome do |app|
     opts.binary = chrome_bin_path
   end
 
-  service = Selenium::WebDriver::Service.chrome(path: driver_path)
+  service = if File.exist?(driver_path)
+    Selenium::WebDriver::Service.chrome(path: driver_path)
+  else
+    Selenium::WebDriver::Service.chrome
+  end
 
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options, service: service)
 end
