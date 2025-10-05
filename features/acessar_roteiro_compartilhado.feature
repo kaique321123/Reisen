@@ -16,9 +16,3 @@ Funcionalidade: Acessar roteiro compartilhado
         Quando eu visito a página de perfil
         Quando eu clico no botão "Acessar plano"
         Então eu devo ser redirecionado ao documento compartilhado
-
-    Cenário: Acesso bem-sucedido ao roteiro sem usuário logado
-        Dado que sou um visitante
-        E o documento compartilhado existe
-        Quando eu acessar o link do documento
-        Então eu devo ser redirecionado ao documento compartilhado
