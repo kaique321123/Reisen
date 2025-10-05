@@ -13,8 +13,6 @@ Rails.application.routes.draw do
   # Páginas principais
   root "home#index"
 
-  resources :perfil
-  resources :documento
   resource :profile, only: [:edit, :update]
 
   get 'login',      to: 'login#new'
