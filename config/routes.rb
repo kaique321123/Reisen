@@ -19,12 +19,20 @@ Rails.application.routes.draw do
     get '/mock/erro',  to: 'mocks#erro'
   end
 
-  # Recursos principais
+  # Perfis e sub-recursos
   resources :perfis do
+    member do
+      patch :update_foto
+      get :customizar
+    end
+
     resources :documentos
     resources :checklists
   end
 
+  # Usuários
   resources :usuarios
+
+  # Feedbacks
   resources :feedbacks, only: [:new, :create, :index, :show]
 end
