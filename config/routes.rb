@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # Recursos existentes
   resources :perfil
   resources :documento
+  resources :feedbacks, only: [:new, :create, :index, :show]
 
   # 🔹 Nova funcionalidade: feedbacks
   resources :feedbacks, only: [:index]

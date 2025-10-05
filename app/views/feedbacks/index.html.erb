@@ -1,0 +1,8 @@
+<h1>Feedbacks de Viajantes</h1>
+
+<% @feedbacks.each do |f| %>
+  <div class="feedback">
+    <strong><%= f.author %></strong> - Nota: <%= f.rating %>/5
+    <p><%= f.comment %></p>
+  </div>
+<% end %>
