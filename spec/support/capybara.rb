@@ -10,8 +10,13 @@ Capybara.register_driver :headless_chrome do |app|
     opts.add_argument('--window-size=1920,1080')
     opts.add_argument('--disable-site-isolation-trials')
     opts.add_argument('--disable-features=IsolateOrigins,site-per-process')
+
+    opts.binary = ENV['CHROME_BIN'] if ENV['CHROME_BIN'].present?
   end
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+
+  driver_path = ENV['CHROMEDRIVER_PATH'] if ENV['CHROMEDRIVER_PATH'].present?
+  service = Selenium::WebDriver::Service.chrome(path: driver_path)
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options, service: service)
 end
 
 Capybara.javascript_driver = :headless_chrome
