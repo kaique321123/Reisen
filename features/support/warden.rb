@@ -1,6 +1,6 @@
 # features/support/warden.rb
-require 'warden/test/helpers'
 
+require 'warden/test/helpers'
 World Warden::Test::Helpers
 
 Before do
