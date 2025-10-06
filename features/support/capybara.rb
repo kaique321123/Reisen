@@ -1,6 +1,5 @@
 require 'capybara'
 require 'selenium-webdriver'
-require 'webdrivers'
 
 begin
   chrome_bin_path = ENV['CHROME_BIN'] || [
