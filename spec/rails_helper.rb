@@ -10,8 +10,8 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 # habilita assigns, assert_template e outros helpers de controller testing
 require "rails-controller-testing"
-Rails::Controller::Testing.install
 
+Rails::Controller::Testing.install
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
