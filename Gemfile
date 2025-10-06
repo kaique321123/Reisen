@@ -57,7 +57,6 @@ group :development, :test do
   gem "simplecov", require: false
   gem "coveralls", require: false
   gem "selenium-webdriver", "~> 4.8"
-  gem "webdrivers"
 end
 
 group :development do
