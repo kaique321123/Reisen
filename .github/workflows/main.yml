@@ -36,6 +36,8 @@ jobs:
 
       - name: Setup ChromeDriver
         uses: nanasess/setup-chromedriver@v2
+        with:
+          chromedriver-version: 139
 
       - uses: ruby/setup-ruby@v1
         with:
