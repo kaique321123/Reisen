@@ -31,7 +31,7 @@ jobs:
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
         with:
-          chrome-version: stable
+          chrome-version: 139
         id: setup-chrome
 
       - name: Setup ChromeDriver
