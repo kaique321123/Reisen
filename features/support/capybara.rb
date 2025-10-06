@@ -59,7 +59,6 @@ def find_chrome
   paths.find { |path| path && File.exist?(path) }
 end
 
-# Encontra o Firefox
 def find_firefox
   return ENV['FIREFOX_BIN'] if ENV['FIREFOX_BIN'] && File.exist?(ENV['FIREFOX_BIN'])
 
@@ -136,11 +135,13 @@ end
 
 Capybara.default_max_wait_time = 10
 
-if ENV['BROWSER']
-  case ENV['BROWSER'].downcase
+case ENV['BROWSER']&.downcase
   when 'firefox'
     puts "→ Forçando uso do Firefox (via ENV['BROWSER'])"
   when 'chrome'
     puts "→ Forçando uso do Chrome (via ENV['BROWSER'])"
-  end
+  when nil
+    puts "→ Nenhuma variável ENV['BROWSER'] definida. Usando navegador padrão."
+  else
+    puts "→ Valor de ENV['BROWSER'] desconhecido: #{ENV['BROWSER']}. Usando navegador padrão."
 end
