@@ -10,8 +10,13 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 # habilita assigns, assert_template e outros helpers de controller testing
 require "rails-controller-testing"
-Rails::Controller::Testing.install
+require 'webdrivers'
 
+major_version = 139
+latest_139_version = `curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_#{major_version}`.strip
+Webdrivers::Chromedriver.required_version = latest_139_version
+
+Rails::Controller::Testing.install
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
