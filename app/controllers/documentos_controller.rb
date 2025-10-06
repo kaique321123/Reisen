@@ -6,7 +6,7 @@ class DocumentosController < ApplicationController
   private
   def airlines
     {
-      "Latam" => "https://www.l'atamairlines.com/br/pt",
+      "Latam" => "https://www.latamairlines.com/br/pt",
       "Gol" => "https://www.voegol.com.br/",
       "Azul" => "https://www.voeazul.com.br/home/br/pt/home"
     }
