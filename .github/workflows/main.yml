@@ -31,13 +31,13 @@ jobs:
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
         with:
-          chrome-version: 139
+          chrome-version: 140
         id: setup-chrome
 
       - name: Setup ChromeDriver
         uses: nanasess/setup-chromedriver@v2
         with:
-          chromedriver-version: 139
+          chromedriver-version: 140
 
       - uses: ruby/setup-ruby@v1
         with:

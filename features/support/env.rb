@@ -5,9 +5,6 @@
 # files.
 
 require 'cucumber/rails'
-require 'webdrivers'
-
-Webdrivers::Chromedriver.required_version = '139.0.7258.154'
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
