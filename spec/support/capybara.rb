@@ -1,48 +1,43 @@
 require 'capybara'
 require 'selenium-webdriver'
+require 'webdrivers'
 
-Capybara.register_driver :headless_chrome do |app|
-  # auto-detect Chrome/Chromium binary in common locations (prefer snap), or use ENV override
+begin
   chrome_bin_path = ENV['CHROME_BIN'] || [
-    '/snap/bin/chromium',
-    '/usr/bin/chromium',
-    '/usr/bin/chromium-browser',
     '/usr/bin/google-chrome',
-    '/opt/google/chrome/chrome'
+    '/opt/google/chrome/chrome',
+    '/usr/bin/chromium',
+    '/usr/bin/chromium-browser'
   ].find { |p| File.exist?(p) }
-
-  # allow explicit override for chromedriver path; otherwise detect common locations
-  driver_path = ENV['CHROMEDRIVER_PATH'] || [
-    '/usr/bin/chromedriver',
-    '/usr/local/bin/chromedriver'
-  ].find { |p| File.exist?(p) }
-
-  options = Selenium::WebDriver::Chrome::Options.new.tap do |opts|
-    opts.add_argument('--headless=new')
-  # avoid using a custom user-data-dir here (snap builds and concurrent runs can conflict)
-  # add common flags to reduce interactive prompts and extensions
-  opts.add_argument('--no-first-run')
-  opts.add_argument('--no-default-browser-check')
-  opts.add_argument('--disable-extensions')
-    opts.add_argument('--disable-gpu')
-    opts.add_argument('--no-sandbox')
-    opts.add_argument('--disable-dev-shm-usage')
-    opts.add_argument('--window-size=1920,1080')
-    opts.add_argument('--disable-site-isolation-trials')
-    opts.add_argument('--disable-features=IsolateOrigins,site-per-process')
-
-    opts.binary = chrome_bin_path if chrome_bin_path
-  end
-
-  service = if driver_path && File.exist?(driver_path)
-    Selenium::WebDriver::Service.chrome(path: driver_path)
+  if chrome_bin_path.nil?
+    raise "Chrome binary not found on system path."
   else
-    # Let webdrivers manage it if available; otherwise Selenium will try default
-    Selenium::WebDriver::Service.chrome
+    Capybara.register_driver :chrome_or_default do |app|
+      options = Selenium::WebDriver::Chrome::Options.new.tap do |opts|
+        opts.add_argument('--headless=new')
+        opts.add_argument('--disable-gpu')
+        opts.add_argument('--no-sandbox')
+        opts.add_argument('--disable-dev-shm-usage')
+        opts.add_argument('--window-size=1920,1080')
+        opts.add_argument('--disable-site-isolation-trials')
+        opts.add_argument('--disable-features=IsolateOrigins,site-per-process')
+        opts.binary = chrome_bin_path
+      end
+      Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+    end
+    Capybara.javascript_driver = :chrome_or_default
+    puts "Capybara configurado: Usando Chrome Headless."
   end
 
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options, service: service)
+rescue StandardError => e
+  Capybara.register_driver :chrome_or_default do |app|
+    options = Selenium::WebDriver::Firefox::Options.new.tap do |opts|
+      opts.add_argument('-headless')
+    end
+    Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
+  end
+  Capybara.javascript_driver = :chrome_or_default
+  puts "Capybara configurado: Chrome não encontrado. Usando Firefox Headless como fallback."
 end
 
-Capybara.javascript_driver = :headless_chrome
 Capybara.default_max_wait_time = 10

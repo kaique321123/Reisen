@@ -13,6 +13,7 @@ Funcionalidade: Comprar passagens
     # nesse caso, deveria conter uma lista de companhias?
     # funcionalidade deve ser pensada em usuário logado ou deslogado?
     @javascript
+    @mock_airlines
     Cenário: Redirecionado com sucesso para o site da companhia
         Dado que sou um participante da viagem
         E o documento compartilhado existe
@@ -23,6 +24,7 @@ Funcionalidade: Comprar passagens
 
     # por que daria erro?
     @javascript
+    @mock_airlines
     Cenário: Falha no redirecionamento para o site da companhia
         Dado que sou um participante da viagem
         E o documento compartilhado existe
@@ -33,6 +35,7 @@ Funcionalidade: Comprar passagens
 
     # Regra de negócio confusa (O que o usuário deve ver como conviddo?)
     @javascript
+    @mock_airlines
     Cenário: Tentativa de comprar passagens deslogado
         Dado que existe um documento compartilhado
         E que estou na página do documento
