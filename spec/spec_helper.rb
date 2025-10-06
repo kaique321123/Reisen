@@ -15,11 +15,6 @@
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'simplecov'
 require 'coveralls'
-require 'webdrivers'
-
-major_version = 139
-latest_139_version = `curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_#{major_version}`.strip
-Webdrivers::Chromedriver.required_version = latest_139_version
 
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([

@@ -10,11 +10,6 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 # habilita assigns, assert_template e outros helpers de controller testing
 require "rails-controller-testing"
-require 'webdrivers'
-
-major_version = 139
-latest_139_version = `curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_#{major_version}`.strip
-Webdrivers::Chromedriver.required_version = latest_139_version
 
 Rails::Controller::Testing.install
 
