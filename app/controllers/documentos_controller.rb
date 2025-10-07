@@ -1,6 +1,6 @@
 class DocumentosController < ApplicationController
   def show
-    @airline = airlines
+    @airlines = airlines
   end
 
   private
