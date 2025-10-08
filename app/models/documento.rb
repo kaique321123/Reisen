@@ -15,7 +15,7 @@ class Documento < ApplicationRecord
     if !content.include?("## #{title}")
       self.content = content.rstrip + "\n\n#{heading}#{body}\n"
     else
-      pattern = /(## #{Regexp.escape(title)}\n).*?(?=\n## |\z)/m
+      pattern = /(##\s+#{Regexp.escape(title)}\n).*?(?=\n## |\z)/m
       # use Regexp.last_match inside block to keep the captured heading
       self.content = content.gsub(pattern) { "#{Regexp.last_match(1)}#{body}\n" }
     end
