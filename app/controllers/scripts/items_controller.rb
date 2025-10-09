@@ -1,5 +1,5 @@
 class Scripts::ItemsController < ApplicationController
-  def crate
+  def create
   end
 
   def update
