@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "documentos/show.html.erb", type: :view do
+RSpec.describe "script/show.html.erb", type: :view do
   it 'exibe o botão para acessar plano de viagem' do
     mocked_airlines = {
       "Latam" => "/mock/latam",

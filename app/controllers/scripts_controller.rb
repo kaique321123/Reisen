@@ -1,4 +1,4 @@
-class DocumentosController < ApplicationController
+class ScriptController < ApplicationController
   def show
     @airlines = airlines
   end
