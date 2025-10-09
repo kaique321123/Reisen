@@ -10,6 +10,8 @@ Um portal completo para planejamento de viagens colaborativo, facilitando a orga
 
 [![Coverage Status](https://coveralls.io/repos/github/kaique321123/Reisen/badge.svg?branch=main)](https://coveralls.io/github/kaique321123/Reisen?branch=main)
 
+[![Maintainability](https://qlty.sh/gh/kaique321123/projects/Reisen/maintainability.svg)](https://qlty.sh/gh/kaique321123/projects/Reisen)
+
 [![Code Coverage](https://qlty.sh/gh/kaique321123/projects/Reisen/coverage.svg)](https://qlty.sh/gh/kaique321123/projects/Reisen)
 
 ---
