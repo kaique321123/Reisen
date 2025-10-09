@@ -1,0 +1,2 @@
+module Scripts::SpentsHelper
+end
