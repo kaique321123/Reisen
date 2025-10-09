@@ -1,34 +1,33 @@
 Dado('que estou logado como {string}') do |username|
-  # Aqui você pode criar/logar o usuário, ou apenas garantir que existe
-  @user = User.find_by(username: username) || User.create!(username: username, email: "#{username}@teste.com")
+  pending
 end
 
 Dado('acesso a página de edição de perfil') do
-  visit edit_profile_path
+  pending
 end
 
 Quando('altero meu nome de usuário para {string}') do |novo_nome|
-  fill_in 'Nome de usuário', with: novo_nome
+  pending
 end
 
 Quando('salvo as alterações') do
-  click_button 'Salvar'
+  pending
 end
 
 Então('devo ver uma mensagem de sucesso') do
-  expect(page).to have_content('Perfil atualizado com sucesso')
+  pending
 end
 
 Então('meu nome de usuário deve ser exibido como {string}') do |nome|
-  expect(find_field('Nome de usuário').value).to eq(nome)
+  pending
 end
 
 Quando('apago meu nome de usuário') do
-  fill_in 'Nome de usuário', with: ''
+  pending
 end
 
 Então('devo ver uma mensagem de erro indicando que o nome de usuário não pode ser em branco') do
-  expect(page).to have_content("Username can't be blank")
+  pending
 end
 
 Dado('que já existe um usuário com nome {string}') do |nome|

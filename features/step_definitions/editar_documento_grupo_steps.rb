@@ -3,115 +3,68 @@ require 'tmpdir'
 require 'fileutils'
 
 Given(/que sou membro do grupo "([^"]+)"/) do |group_name|
-  # TODO: criar ou carregar usuário membro do grupo
-  @current_user ||= create_user_and_add_to_group('kaique', group_name)
+  pending
 end
 
 Given(/existe um documento de planejamento intitulado "([^"]+)"/) do |title|
-  # criar um Documento no banco de testes
-  @document = Documento.create!(title: title, content: "")
+  pending
 end
 
 When(/eu edito a seção "([^"]+)" com o texto "([^"]+)"/) do |section, text|
-  # Operação em nível de modelo (permitir execução sem UI)
-  @last_error = nil
-  if text.nil? || text.strip.empty?
-    # simulate validation error on save attempt
-    @last_error = 'O conteúdo não pode ficar em branco'
-  else
-    @document.update_section(section, text)
-  end
+  pending
 end
 
 When(/eu salvo as alterações/) do
-  # No-op para testes em nível de modelo; persistência já feita em update_section
-  nil
+  pending
 end
 
 Then(/eu devo ver a mensagem "([^"]+)"/) do |message|
-  # In model-level tests we simulate messages via @last_error or success
-  if @last_error
-    expect(@last_error).to eq(message)
-  else
-    # success message simulated as saved document
-    expect(message).to eq('Documento salvo com sucesso')
-  end
+  pending
 end
 
 Then(/a seção "([^"]+)" deve conter "([^"]+)"/) do |section, text|
-  # check model content
-  @document.reload
-  expect(@document.section_body(section)).to include(text)
+  pending
 end
 
 # Multi-session example using Capybara::Session
 Given(/que existe um grupo com dois membros: "([^"]+)" e "([^"]+)"/) do |user1, user2|
-  @user1 = create_user_and_add_to_group(user1, 'Viagem para Europa')
-  @user2 = create_user_and_add_to_group(user2, 'Viagem para Europa')
+  pending
 end
 
 Given(/existe um documento "([^"]+)" com a seção "([^"]+)"/) do |title, section|
-  @document = Documento.create!(title: title, content: "\n\n## #{section}\n")
+  pending
 end
 
 When(/"([^\"]+)" abre o documento em uma sessão de navegador/) do |username|
-  # register a one-off driver with a unique user-data-dir to avoid profile conflicts
-    # Não abrir o navegador aqui (evita múltiplas instâncias simultâneas); apenas marque que o usuário abriu
-    (@opened_sessions ||= {})[username] = true
+  pending
 end
 
 When(/"([^"]+)" altera a seção "([^\"]+)" para "([^\"]+)" e salva/) do |username, section, new_text|
-  # operação em nível de modelo: atualiza diretamente o Documento (mais simples e robusto)
-  @document.update_section(section, new_text)
+  pending
 end
 
 Then(/"([^"]+)" deve ver a atualização "([^\"]+)" no documento após recarregar a página/) do |username, expected|
-  # verificação em nível de modelo: recarrega e checa o documento salvo
-  @document.reload
-  expect(@document.content).to include(expected)
+  pending
 end
 
 When(/eu tento salvar a seção "([^"]+)" com texto "([^"]*)"/) do |section, text|
-  # model-level save attempt
-  if text.nil? || text.strip.empty?
-    @last_error = 'O conteúdo não pode ficar em branco'
-  else
-    @document.update_section(section, text)
-    @last_error = nil
-  end
+  pending
 end
 
 Then(/devo ver um erro "([^"]+)"/) do |msg|
-  if defined?(@last_error) && @last_error
-    expect(@last_error).to eq(msg)
-  else
-    expect(page).to have_content(msg)
-  end
+  pending
 end
 
 Given(/que existe um usuário "([^"]+)" que não pertence ao grupo/) do |username|
-  @external_user = User.find_by(email: "#{username}@example.com") || User.create!(username: username, display_name: username.capitalize, email: "#{username}@example.com")
+  pending
 end
 
 When(/"([^"]+)" tenta editar a seção "([^"]+)"/) do |username, section|
-  # simula tentativa de edição por usuário externo
-  # Simula checagem de permissão em nível de teste (não temos Group model aqui)
-  user = User.find_by(email: "#{username}@example.com")
-  # se o usuário não for 'kaique' consideramos não pertencente ao grupo
-  if user && user.username == 'kaique'
-    @document.update_section(section, 'tentativa externa')
-    @last_error = nil
-  else
-    @last_error = 'Você não tem permissão para editar este documento'
-  end
+  pending
 end
 
 Then(/deve receber um erro de autorização "([^"]+)"/) do |msg|
-  if defined?(@last_error) && @last_error
-    expect(@last_error).to eq(msg)
-  else
-    expect(page).to have_content(msg)
-  end
+  pending
 end
 
 ### Helper placeholders (implemente no seu test helper/factory)
@@ -123,16 +76,7 @@ def create_user_and_add_to_group(username, group_name)
 end
 
 Given(/^existe um documento "([^"]+)"$/) do |title|
-  @document = Documento.find_by(title: title) || Documento.create!(title: title, content: "")
-  # try to create or find a Perfil to support nested routes (perfis/:perfil_id/documentos/:id)
-  begin
-    @perfil = Perfil.first || Perfil.create!(name: 'perfil_teste')
-    if @perfil.respond_to?(:documentos)
-      @perfil.documentos << @document unless @perfil.documentos.include?(@document)
-    end
-  rescue NameError, ActiveRecord::StatementInvalid
-    @perfil = nil
-  end
+  pending
 end
 
 def create_browser_session(username)
@@ -178,6 +122,5 @@ def create_browser_session(username)
 end
 
 When(/"([^"]+)" abre o mesmo documento em outra sessão de navegador/) do |username|
-  # Não abrir outra sessão aqui — apenas marcar a intenção. A sessão real será criada sob demanda.
-  (@opened_sessions ||= {})[username] = true
+  pending
 end

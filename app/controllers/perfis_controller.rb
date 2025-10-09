@@ -1,2 +1,0 @@
-class PerfisController < ApplicationController
-end

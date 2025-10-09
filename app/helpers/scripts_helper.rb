@@ -1,2 +1,2 @@
-module ScriptHelper
+module ScriptsHelper
 end
