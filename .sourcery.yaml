@@ -1,0 +1,7 @@
+github:
+  review: comment
+  create_review: true
+
+summary:
+  pull_request_summary: true
+  walkthrough: true
