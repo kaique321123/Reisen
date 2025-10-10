@@ -32,7 +32,7 @@ class ScriptsController < ApplicationController
 
   def destroy
     @script.destroy
-    redirect_to profile_path(current_user), notice: "Roteiro deletado com sucesso"
+    redirect_to root_path, notice: "Roteiro deletado com sucesso"
   end
 
   def news

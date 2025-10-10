@@ -30,7 +30,7 @@ class ChecklistsController < ApplicationController
 
   def destroy
     @checklist.destroy
-    redirect_to @checklist, notice: 'Checklist deletada com sucesso'
+    redirect_to root_path, notice: 'Checklist deletada com sucesso'
   end
 
   private
