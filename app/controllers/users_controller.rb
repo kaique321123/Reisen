@@ -22,7 +22,10 @@ class UsersController < ApplicationController
 
   def set_user
     # Define o usuário como o usuário atual
-    @user = current_user
+    @user = User.find params[:id]
+    unless @user == current_user
+      redirect_to root_path, alert: "Acesso negado"
+    end
   end
 
   def user_params

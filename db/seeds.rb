@@ -9,9 +9,9 @@
 #   end
 
 puts "Limpando dados"
-User.destroy_all
 Script.destroy_all
 Checklist.destroy_all
+User.destroy_all
 
 puts "Criando usuários, roteiros e checklists"
 main_user = User.create!(
@@ -19,6 +19,16 @@ main_user = User.create!(
   email: "testuser@example.com",
   password: "123456",
   password_confirmation: "123456",
+)
+
+main_script = Script.create!(
+  title: "Viagem para " + Faker::Address::city,
+  user: main_user
+)
+
+main_checklist = Checklist.create!(
+  title: Faker::Lorem.sentence,
+  user: main_user
 )
 
 puts "Usuário criado: {name=Usuário teste, email=testuser@example.com, password=123456}"

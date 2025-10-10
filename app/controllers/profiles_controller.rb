@@ -4,6 +4,9 @@ class ProfilesController < ApplicationController
   def show
     # Encontra o usuário com base no ID
     @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to root_path, alert: "Acesso negado"
+    end
   end
 
   def my_profile
