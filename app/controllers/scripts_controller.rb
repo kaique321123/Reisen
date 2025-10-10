@@ -42,7 +42,12 @@ class ScriptsController < ApplicationController
   private
 
   def set_script
-    @script = Script.find(params[:id])
+    if current_user.nil?
+      redirect_to root_path, alert: "Acesso negado" and return
+    end
+    @script = current_user.scripts.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => _
+      redirect_to root_path
   end
 
   def script_params

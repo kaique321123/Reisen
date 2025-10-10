@@ -23,6 +23,8 @@ class UsersController < ApplicationController
   def set_user
     # Define o usuário como o usuário atual
     @user = User.find params[:id]
+    rescue ActiveRecord::RecordNotFound => _
+      redirect_to root_path
     unless @user == current_user
       redirect_to root_path, alert: "Acesso negado"
     end

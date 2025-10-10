@@ -36,7 +36,12 @@ class ChecklistsController < ApplicationController
   private
 
   def set_checklist
+    if current_user.nil?
+      redirect_to root_path, alert: "Acesso negado" and return
+    end
     @checklist = current_user.checklists.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => _
+      redirect_to root_path
   end
 
   def checklist_params
