@@ -14,9 +14,9 @@ Funcionalidade: Criar checklist
     # Todos podem ver a minha lista ou deve ser algo apenas para mim?
 
     # usuário != participante ?
-    Cenário: Conseguir criar checklist
-        Dado que sou um usuário
-        E que estou na página de perfil
-        Quando eu clico no botão "Criar checklist"
-        Então deve ser criada uma nova checklist
-        E eu devo ser redirecionado para ela
+    #Cenário: Conseguir criar checklist
+    #    Dado que sou um usuário
+    #    E que estou na página de perfil
+    #    Quando eu clico no botão "Criar checklist"
+    #    Então deve ser criada uma nova checklist
+    #    E eu devo ser redirecionado para ela

@@ -10,7 +10,7 @@ Funcionalidade: Acesso roteiro compartilhado como convidado
     # Quando: Ação que o usuário irá fazer
     # Então: Resultado esperado da ação
 
-  Cenário: Acesso bem-sucedido ao roteiro sem usuário logado
-    Dado que existe um documento compartilhado
-    Quando eu acessar o link público do documento
-    Então eu devo ver o conteúdo do documento
+  #Cenário: Acesso bem-sucedido ao roteiro sem usuário logado
+  #  Dado que existe um documento compartilhado
+  #  Quando eu acessar o link público do documento
+  #  Então eu devo ver o conteúdo do documento

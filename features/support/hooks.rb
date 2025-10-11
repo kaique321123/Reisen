@@ -16,5 +16,5 @@ Before('@mock_airlines') do
     "Gol"   => "/mock/gol",
     "Azul"  => "/mock/azul"
   }
-  allow_any_instance_of(DocumentosController).to receive(:airlines).and_return(mocked_airlines)
+  allow_any_instance_of(ScriptsController).to receive(:airlines).and_return(mocked_airlines)
 end
